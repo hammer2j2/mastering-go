@@ -1,0 +1,27 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on:  
+  push:
+    branches:
+      - main
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get pull request of current sha // (we assume there is one)
+      - id: prdetail
+      - uses: actions/github-scripts@v6
+      - with:
+        script: |
+          // https://github.com/octokit/core.js#readme
+            const octokit = new Octokit({
+            auth: ${{ GH_TOKEN }}
+          })
+
+        await octokit.request('GET /repos/{owner}/{repo}/commits/{commit_sha}/pulls', {
+          owner: 'OWNER',
+          repo: 'REPO',
+          commit_sha: 'COMMIT_SHA'
+        })
+      - name: Get result
+  run: echo "${{steps.prdetail.outputs.result}}"
