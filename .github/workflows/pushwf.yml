@@ -18,20 +18,10 @@ jobs:
         uses: actions/github-scripts@v6
         with:
           script: |
-            # // https://github.com/octokit/core.js#readme
-            # //  const octokit = new Octokit({
-            # //  auth: ${{ GH_TOKEN }}
-            # // })
             github.rest.commits.pulls({
               commit_sha: 'COMMIT_SHA'
               owner: 'OWNER'
               repo: 'REPO'
             })
-
-            # await octokit.request('GET /repos/{owner}/{repo}/commits/{commit_sha}/pulls', {
-            #   owner: 'OWNER',
-            #   repo: 'REPO',
-            #   commit_sha: 'COMMIT_SHA'
-            # })
       - name: Get result
         run: echo "${{steps.prdetail.outputs.result}}"
