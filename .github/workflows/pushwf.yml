@@ -20,10 +20,10 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            github.rest.commits.pulls({
+            github.rest.repos.listPullRequestsAssociatedWithCommit({
               commit_sha: context.commit.sha
               owner: context.repo.owner,
-              repo: context.repo.repo,
-            })
+              repo: context.repo.repo
+            });
       - name: Get result
         run: echo "${{steps.prdetail.outputs.result}}"
