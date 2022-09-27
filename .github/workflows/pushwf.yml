@@ -1,8 +1,3 @@
-# description: |
-#     Assumptions: Git Merge is used so context and history are available
-#     Simple and familiar.
-#     Preserves complete history and chronological order.
-#     Maintains the context of the branch.
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:  
